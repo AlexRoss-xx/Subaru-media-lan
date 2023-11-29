@@ -1,7 +1,9 @@
 
 # PCB
 
- All can be found :
+ All Schematic and pcb can be found :  
+ https://oshwlab.com/rasskazoff/subarulan  
+ https://easyeda.com/editor#project_id=b3d2a45b2d0842fa9b5bcca11755af1b
 
 ### Schematic  
 Subaru Tribeca Head unit uses a subset of the IEBus Standard, which was developed by NEC electronics for automotive use.
@@ -265,4 +267,4 @@ Because  application can work in the backgroud  is important to  enable  "displa
 ![PCB](./assets/overlay.png) 
 
 Rear DVD  entertainment can be also connected  to the Android using  video out (Not all android units contain  video out)
-![PCB](./assets/dvd.jpg) 
+![PCB](./assets/DVD.jpg) 
