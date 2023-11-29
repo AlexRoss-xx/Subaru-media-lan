@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~  2023.
+  ~ Alexey Rasskazov
+  -->
+
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <EditTextPreference
+        android:defaultValue="Default value"
+        android:enabled="false"
+        android:selectable="false"
+        android:persistent="false"
+        android:shouldDisableView="false"
+        android:key="device_info"
+        android:selectAllOnFocus="true"
+        android:singleLine="true"
+        android:title="Device info" />
+    <EditTextPreference
+        android:defaultValue="Default value"
+        android:enabled="false"
+        android:selectable="false"
+        android:persistent="false"
+        android:shouldDisableView="false"
+        android:key="registered_to"
+        android:selectAllOnFocus="true"
+        android:singleLine="true"
+        android:title="Registered " />
+    <EditTextPreference
+        android:defaultValue="Default value"
+        android:enabled="false"
+        android:selectable="false"
+        android:persistent="false"
+        android:shouldDisableView="false"
+        android:key="mcu_version"
+        android:selectAllOnFocus="true"
+        android:singleLine="true"
+        android:title="MCU version " />
+    <EditTextPreference
+        android:defaultValue="Default value"
+        android:enabled="false"
+        android:selectable="false"
+        android:persistent="false"
+        android:shouldDisableView="false"
+        android:key="apk_version"
+        android:selectAllOnFocus="true"
+        android:singleLine="true"
+        android:title="Subaru apk version " />
+    <EditTextPreference
+        android:defaultValue="Default value"
+        android:enabled="false"
+        android:selectable="false"
+        android:persistent="false"
+        android:shouldDisableView="false"
+        android:key="copyright"
+        android:selectAllOnFocus="true"
+        android:singleLine="true"
+        android:title="© rasskazoff@gmail.com" />
+
+
+</PreferenceScreen>

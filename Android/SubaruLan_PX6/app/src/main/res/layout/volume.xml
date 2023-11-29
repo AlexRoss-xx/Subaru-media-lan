@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~  2023.
+  ~ Alexey Rasskazov
+  -->
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/tuner_layout">
+
+    <data>
+        <import type="android.view.View" />
+        <variable
+            name="soundModel"
+            type="com.hzbhd.alexross.subarulan2.models.SoundSettingsModel" />
+    </data>
+
+    <RelativeLayout
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:background="@color/transparent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/imageViewON"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:adjustViewBounds="true"
+            android:paddingLeft="1dp"
+            android:paddingTop="2dp"
+
+            android:visibility="@{(soundModel.state.radioOn &amp;&amp;  (soundModel.active!=6)) ? View.VISIBLE : View.INVISIBLE}"
+            app:srcCompat="@mipmap/volume" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/imageViewActive"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:adjustViewBounds="true"
+            android:paddingLeft="1dp"
+            android:paddingTop="2dp"
+
+            android:visibility="@{ soundModel.state.radioOn &amp;&amp; (soundModel.active==6) ? View.VISIBLE : View.INVISIBLE}"
+            app:srcCompat="@mipmap/volume_active" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/imageViewOFF"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:adjustViewBounds="true"
+            android:paddingLeft="1dp"
+            android:paddingTop="2dp"
+
+            android:visibility="@{!soundModel.state.radioOn ? View.VISIBLE : View.INVISIBLE}"
+            app:srcCompat="@mipmap/volume_off" />
+
+        <TextView
+            android:id="@+id/textView7"
+            android:layout_width="74dp"
+            android:layout_height="74dp"
+            android:layout_centerInParent="true"
+            android:fontFamily="@font/rubik_light"
+            android:gravity="center"
+            android:text="@{``+soundModel.volume,default=`36`}"
+            android:textAlignment="center"
+            android:textColor="@color/mainColor"
+            android:textSize="46sp"
+            android:visibility="@{soundModel.state.radioOn &amp;&amp; !soundModel.mute ? View.VISIBLE : View.INVISIBLE}"
+            tools:layout_editor_absoluteX="932dp"
+            tools:layout_editor_absoluteY="448dp" />
+
+        <TextView
+            android:id="@+id/textView8"
+            android:layout_width="74dp"
+            android:layout_height="74dp"
+            android:layout_centerInParent="true"
+            android:fontFamily="@font/rubik_light"
+            android:gravity="center"
+            android:text="@{soundModel.mute?`MUTE`:``,default=``}"
+            android:textAlignment="center"
+            android:textColor="@color/orange"
+            android:textSize="26sp"
+            android:visibility="@{soundModel.state.radioOn &amp;&amp; soundModel.mute ? View.VISIBLE : View.INVISIBLE}"
+            tools:layout_editor_absoluteX="932dp"
+            tools:layout_editor_absoluteY="448dp" />
+
+        <TextView
+            android:id="@+id/textViewOff"
+            android:layout_width="74dp"
+            android:layout_height="74dp"
+            android:layout_centerInParent="true"
+            android:fontFamily="@font/rubik_light"
+            android:gravity="center"
+            android:text="@{!soundModel.state.radioOn ? `OFF`:``,default=``}"
+            android:textAlignment="center"
+            android:textColor="@color/mainColor"
+            android:textSize="30sp"
+            android:visibility="@{!soundModel.state.radioOn ? View.VISIBLE : View.INVISIBLE}"
+            tools:layout_editor_absoluteX="932dp"
+            tools:layout_editor_absoluteY="448dp" />
+    </RelativeLayout>
+</layout>

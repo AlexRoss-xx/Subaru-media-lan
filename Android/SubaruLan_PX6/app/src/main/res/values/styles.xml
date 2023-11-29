@@ -1,0 +1,119 @@
+<!--
+  ~  2023.
+  ~ Alexey Rasskazov
+  -->
+
+<resources>
+
+    <style name="Theme.Transparent" parent="android:Theme">
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowIsFloating">true</item>
+        <item name="android:backgroundDimEnabled">false</item>
+        <item name="android:windowAnimationStyle">@null</item>
+    </style>
+
+
+    <!-- Base application theme. -->
+    <style name="AppTheme"  parent="Theme.AppCompat.Light">
+
+        <item name="windowNoTitle">true</item>
+        <item name="android:windowDisablePreview">false</item>
+        <!-- Customize your theme here. -->
+        <item name="android:windowBackground">@android:color/black</item>
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item >
+        <item name="colorAccent">@color/colorAccent</item>
+
+    </style>
+
+
+    <style name="AppThemeSettings" parent="Theme.AppCompat.Light">
+        <item name="windowNoTitle">false</item>
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="android:windowDisablePreview">false</item>
+
+
+    </style>
+
+    <!-- ActionBar styles -->
+    <style name="MyActionBar"
+       parent="Theme.AppCompat.DayNight">
+        <item name="android:background"> @color/background_main</item>
+    </style>
+
+    <style name="FullscreenTheme" parent="AppTheme">
+        <item name="android:actionBarStyle">@style/FullscreenActionBarStyle</item>
+        <item name="android:windowActionBarOverlay">true</item>
+        <item name="android:windowBackground">@null</item>
+        <item name="metaButtonBarStyle">?android:attr/buttonBarStyle</item>
+        <item name="metaButtonBarButtonStyle">?android:attr/buttonBarButtonStyle</item>
+    </style>
+
+    <style name="FullscreenActionBarStyle" parent="Widget.AppCompat.ActionBar">
+        <item name="android:background">@color/black_overlay</item>
+    </style>
+
+
+    <style name="backgroundImage">
+        <item name="android:src">@mipmap/artboard1</item>
+    </style>
+
+    <style name="mainTextColor">
+        <item name="android:textColor">@color/white_overlay</item>
+    </style>
+
+    <style name="orangeColor">
+        <item name="android:textColor">@color/orange</item>
+    </style>
+
+    <style name="yellowColor">
+        <item name="android:textColor">@color/yellow</item>
+    </style>
+
+    <style name="redColor">
+        <item name="android:textColor">@color/red</item>
+    </style>
+
+
+    <style name="stations_number">
+        <item name="android:textColor">@color/mainColor</item>
+        <item name="android:textSize">22sp</item>
+    </style>
+
+    <style name="stations">
+        <item name="android:textColor">#dedcdc</item>
+        <item name="android:textSize">36sp</item>
+    </style>
+
+    <style name="station_selected">
+        <item name="android:textColor">@color/orange</item>
+        <item name="android:textSize">22sp</item>
+    </style>
+
+
+    <style name="playingcd">
+        <item name="android:textColor">@color/orange</item>
+        <item name="android:textSize">22sp</item>
+    </style>
+
+    <style name="loadedcd">
+        <item name="android:textColor">@color/mainColor</item>
+        <item name="android:textSize">22sp</item>
+    </style>
+
+    <style name="emptycd">
+        <item name="android:textColor">#0ddedcdc</item>
+        <item name="android:textSize">22sp</item>
+    </style>
+
+
+    <style name="SeekBarTheme" parent="Widget.AppCompat.SeekBar">
+        <item name="colorAccent">@color/white_overlay</item>
+        <item name="android:thumb">@mipmap/seekbar_thumb_v</item>
+    </style>
+
+
+</resources>

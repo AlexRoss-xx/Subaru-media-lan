@@ -1,0 +1,371 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~  2023.
+  ~ Alexey Rasskazov
+  -->
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/tripinfo_layout">
+
+    <data>
+        <import type="android.view.View" />
+        <import type="com.hzbhd.alexross.subarulan2.models.TRIPMODE" />
+        <variable name="showChart" type="java.lang.Boolean"  />
+
+        <variable
+            name="canModel"
+            type="com.hzbhd.alexross.subarulan2.models.CANModel" />
+        <variable
+            name="config"
+            type="com.hzbhd.alexross.subarulan2.ApplicationConfig" />
+        <variable
+            name="stateModel"
+            type="com.hzbhd.alexross.subarulan2.models.StateModel" />
+		<variable
+            name="STATE"
+            type="com.hzbhd.alexross.subarulan2.models.State" />
+    </data>
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="visible">
+
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraintLayout12"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@mipmap/artboard">
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraintLayout10"
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:layout_marginEnd="8dp"
+            android:visibility="@{(canModel.engine_temperatureEnable || canModel.engine_temperatureWarning? View.VISIBLE : View.INVISIBLE)}"
+            app:layout_constraintEnd_toStartOf="@+id/constraintLayout8"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                android:id="@+id/textViewTemp"
+                text_style_eng_temp="@{ (canModel.engine_temperature_value)}"
+                text_style_eng_temp_warning="@{ (canModel.engine_temperature_warning_value)}"
+                android:layout_width="60dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:fontFamily="@font/rubik_light"
+                android:gravity="bottom|right"
+
+                android:text="@{``+canModel.engine_temperature, default=100}"
+                android:textSize="36sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/imageViewET"
+                android:layout_width="33dp"
+                android:layout_height="45dp"
+                android:layout_marginTop="8dp"
+                android:adjustViewBounds="false"
+                android:cropToPadding="false"
+                android:scaleType="fitStart"
+                android:visibility="@{(!canModel.engine_temperatureWarning ? View.VISIBLE : View.INVISIBLE)}"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/textViewTemp"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.554"
+                app:srcCompat="@mipmap/engine_temp" />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/imageViewETW"
+                android:layout_width="33dp"
+                android:layout_height="45dp"
+                android:layout_marginTop="8dp"
+                android:adjustViewBounds="false"
+                android:cropToPadding="false"
+                android:scaleType="fitStart"
+                android:visibility="@{(canModel.engine_temperatureWarning ? View.VISIBLE : View.INVISIBLE)}"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/textViewTemp"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.554"
+                app:srcCompat="@mipmap/engine_temp_w" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+        <TextView
+            android:id="@+id/textViewTime"
+            android:layout_width="wrap_content"
+            android:layout_height="48dp"
+            android:layout_marginEnd="16dp"
+            android:layout_weight="1"
+            android:fontFamily="@font/rubik_light"
+            android:gravity="bottom"
+            android:text="@{``+canModel.currentTime, default=`10:10`}"
+            android:textColor="@color/white_overlay"
+            android:textSize="36sp"
+            android:visibility="visible"
+            app:layout_constraintEnd_toStartOf="@+id/constraintLayout11"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/textView17"
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:layout_marginEnd="4dp"
+            android:layout_weight="1"
+            android:fontFamily="@font/rubik_light"
+            android:gravity="center_vertical"
+            android:text="@{``+canModel.temperature, default=10.8}"
+            android:textColor="@color/white_overlay"
+            android:textSize="36sp"
+            app:layout_constraintEnd_toStartOf="@+id/textView18"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/textView18"
+            android:layout_width="wrap_content"
+            android:layout_height="32dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="8dp"
+            android:layout_weight="1"
+            android:text="\u2103"
+            android:textColor="@color/white_overlay"
+            android:textSize="24sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/imageView16"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            android:visibility="@{(canModel.tireAlert? View.VISIBLE : View.INVISIBLE)}"
+            app:layout_constraintBottom_toBottomOf="@+id/constraintLayout8"
+            app:layout_constraintEnd_toStartOf="@+id/constraintLayout10"
+            app:layout_constraintTop_toTopOf="@+id/constraintLayout8"
+            app:layout_constraintVertical_bias="0.0"
+            app:srcCompat="@mipmap/tpms_bar" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraintLayout8"
+            android:layout_width="303dp"
+            android:layout_height="50dp"
+            android:layout_marginEnd="110dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/imageView3"
+                android:layout_width="71dp"
+                android:layout_height="50dp"
+                android:layout_marginEnd="8dp"
+                android:adjustViewBounds="false"
+                android:cropToPadding="false"
+                android:scaleType="fitStart"
+                android:visibility="@{(!canModel.lowFuel)?View.VISIBLE : View.INVISIBLE}"
+                app:layout_constraintEnd_toStartOf="@+id/textView20"
+                app:srcCompat="@mipmap/fuel"
+                tools:layout_editor_absoluteY="0dp" />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/ImageView"
+                android:layout_width="71dp"
+                android:layout_height="50dp"
+                android:layout_marginEnd="8dp"
+                android:adjustViewBounds="false"
+                android:cropToPadding="false"
+                android:scaleType="fitStart"
+                android:visibility="@{canModel.lowFuel?View.VISIBLE : View.INVISIBLE}"
+                app:layout_constraintEnd_toStartOf="@+id/textView20"
+                app:srcCompat="@mipmap/fuel_alert"
+                tools:layout_editor_absoluteY="0dp" />
+
+            <TextView
+                android:id="@+id/textView19"
+                android:layout_width="52dp"
+                android:layout_height="match_parent"
+                android:layout_marginEnd="8dp"
+                android:fontFamily="@font/rubik_light"
+                android:gravity="center_vertical"
+                android:text="@{``+ (config.Companion.getUS() &amp; !config.Companion.getUStoKM() ?`miles`:`km`)}"
+                android:textColor="@color/white_overlay"
+                app:layout_constraintEnd_toEndOf="@+id/ImageView"
+                tools:layout_editor_absoluteY="0dp" />
+
+            <TextView
+                android:id="@+id/textView21"
+                android:layout_width="66dp"
+                android:layout_height="match_parent"
+                android:layout_marginEnd="8dp"
+                android:layout_marginBottom="5dp"
+                android:fontFamily="@font/rubik_light"
+                android:gravity="bottom|center_horizontal"
+                android:paddingTop="10dp"
+                android:text="@{``+ (config.Companion.getUS() &amp; !config.Companion.getUStoKM() ?`MPG`:`L/100km`)}"
+                android:textColor="@color/white_overlay"
+                android:textSize="16sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent" />
+
+            <TextView
+                android:id="@+id/textView20"
+                android:layout_width="75dp"
+                android:layout_height="match_parent"
+                android:layout_marginEnd="8dp"
+                android:fontFamily="@font/rubik_light"
+                android:gravity="bottom|right"
+                android:text="@{@string/avgConsFuel((canModel.tripMode==TRIPMODE.A?canModel.avgFuelConsumptionA:canModel.avgFuelConsumptionB)), default=27.8}"
+                android:textColor="@color/white_overlay"
+                android:textSize="36sp"
+                app:layout_constraintEnd_toStartOf="@+id/textView21"
+                tools:layout_editor_absoluteY="0dp" />
+
+            <TextView
+                android:id="@+id/textViewRange"
+                text_style="@{ (canModel.range)}"
+                android:layout_width="73dp"
+                android:layout_height="match_parent"
+                android:layout_marginEnd="16dp"
+                android:fontFamily="@font/rubik_light"
+                android:gravity="bottom"
+                android:text="@{``+ (canModel.range)+``, default=`400`}"
+                android:textAlignment="textEnd"
+
+                android:textSize="36sp"
+                app:layout_constraintEnd_toStartOf="@+id/textView19"
+                tools:layout_editor_absoluteY="4dp" />
+
+            <TextView
+                android:id="@+id/textView32"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="28dp"
+                android:layout_marginBottom="24dp"
+                android:fontFamily="@font/rubik_light"
+                android:text="@{``+(canModel.tripMode==TRIPMODE.A?'A':'B') }"
+                android:textColor="@color/mainColor"
+                android:textSize="18sp"
+                app:layout_constraintBottom_toBottomOf="@+id/textView21"
+                app:layout_constraintEnd_toEndOf="@+id/textView21" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraintLayout11"
+            android:layout_width="112dp"
+            android:layout_height="50dp"
+            android:visibility="@{(canModel.fuelConsamptionEnable? View.VISIBLE : View.INVISIBLE)}"
+            app:layout_constraintEnd_toStartOf="@+id/imageView16"
+            app:layout_constraintTop_toTopOf="parent"
+            android:onClick="@{canModel::onRealConsumptionClick}"
+            >
+
+            <TextView
+                android:id="@+id/textView_fuel"
+                android:layout_width="wrap_content"
+                android:layout_height="48dp"
+                android:fontFamily="@font/rubik_light"
+                android:gravity="bottom|right"
+                android:text="@{``+canModel.fuelConsumption, default=47}"
+                android:textColor="@color/white_overlay"
+                android:textSize="36sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/textView_fuelL"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/textView_fuelL"
+                android:layout_width="70dp"
+                android:layout_height="37dp"
+                android:fontFamily="@font/rubik_light"
+                android:gravity="bottom|center_horizontal"
+                android:paddingTop="10dp"
+                android:text="@{``+ (config.Companion.getUS() &amp; !config.Companion.getUStoKM() ?`MPG`:`L/100km`), default=`L/100km`}"
+                android:textColor="@color/white_overlay"
+                android:textSize="16sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.47" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+        <info.androidhive.fontawesome.FontTextView
+            android:id="@+id/fontTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="56dp"
+            android:layout_marginEnd="16dp"
+            android:text="@string/fa_eye"
+            android:textColor="#1DFFFFFF"
+            android:textSize="36dp"
+            android:visibility="@{(!stateModel.infoWindowDisable &amp;stateModel.infoWindowEnable ? View.VISIBLE : View.INVISIBLE)}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+
+            app:solid_icon="false" />
+
+        <info.androidhive.fontawesome.FontTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="56dp"
+            android:layout_marginEnd="16dp"
+            android:text="@string/fa_eye_slash"
+            android:textColor="@color/red"
+            android:textSize="36dp"
+            android:visibility="@{(stateModel.infoWindowDisable &amp;stateModel.infoWindowEnable? View.VISIBLE : View.INVISIBLE)}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:solid_icon="true"
+
+            />
+
+        <Button
+            android:id="@+id/button3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="56dp"
+            android:layout_marginEnd="8dp"
+            android:background="@color/transparent"
+            android:onClick="@{canModel::onClickShowInfo}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:enabled="@{(stateModel.infoWindowEnable? true: false)}"
+            />
+
+        <TextView
+            android:id="@+id/textView37"
+            android:layout_width="wrap_content"
+            android:layout_height="32dp"
+            android:layout_marginBottom="8dp"
+            android:text="@{``+canModel.motorhoursStr, default=`47`}"
+            android:textAlignment="center"
+            android:textColor="@color/mainColor"
+            android:textSize="24sp"
+            android:visibility="@{(canModel.sheduler ? View.VISIBLE : View.INVISIBLE)}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <com.github.mikephil.charting.charts.LineChart
+            android:id="@+id/linechart"
+            android:layout_width="match_parent"
+            android:layout_height="469dp"
+
+            android:visibility="@{(showChart &amp;&amp; (canModel.showFCChart || canModel.fuelConsamptionChartEnable) &amp;&amp; stateModel.currentState!= STATE.CARINFO  )?   View.VISIBLE : View.INVISIBLE}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:setChartData="@{canModel.records}"
+            app:chartType="@{canModel.fcChartType}"/>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

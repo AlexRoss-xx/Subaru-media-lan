@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!--
+  ~  2023.
+  ~ Alexey Rasskazov
+  -->
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="horizontal"
+    android:background="#00000000">
+
+
+    <RelativeLayout
+        android:id="@+id/intervals_d"
+        android:layout_width="25dp"
+        android:layout_height="match_parent"
+
+        android:layout_marginBottom="0dp"
+        android:layout_marginStart="0dp"
+        android:layout_marginTop="0dp"
+        android:orientation="vertical"
+        android:paddingLeft="3dp" >
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/intervals"
+        android:layout_width="24dp"
+        android:layout_height="match_parent"
+        android:layout_alignParentTop="true"
+        android:layout_marginBottom="0dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="0dp"
+        android:orientation="vertical" >
+
+    </RelativeLayout>
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/imageView"
+        android:layout_width="18dp"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="7dp"
+        android:layout_marginStart="7dp"
+        android:layout_marginTop="7dp"
+        android:adjustViewBounds="false"
+        android:contentDescription="TODO"
+        android:cropToPadding="false"
+        android:scaleType="fitXY"
+        app:srcCompat="@mipmap/seekbar_background_v" />
+
+    <com.hzbhd.alexross.subarulan2.controls.seekBar.VerticalSeekBar
+        android:id="@+id/vertseekbar"
+        android:layout_width="32dp"
+        android:layout_height="match_parent"
+        android:theme="@style/SeekBarTheme"
+        android:enabled= "false"/>
+
+</RelativeLayout>

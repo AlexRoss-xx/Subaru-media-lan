@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~  2023.
+  ~ Alexey Rasskazov
+  -->
+
+<resources>
+    <string-array name="serv">
+        <item>Engine Oil</item>
+        <item>Engine Air Filter</item>
+    </string-array>
+
+    <string-array name="infoType">
+        <item>Bar</item>
+        <item>Window</item>
+    </string-array>
+    <string-array name="infoType_values">
+        <item>0</item>
+        <item>1</item>
+    </string-array>
+
+    <string-array name="ChartType">
+        <item>Cubic Bezier</item>
+        <item>Horizontal Bezier</item>
+        <item>Stepped</item>
+    </string-array>
+    <string-array name="ChartTypeValues">
+        <item>0</item>
+        <item>1</item>
+        <item>2</item>
+    </string-array>
+
+
+
+</resources>

@@ -1,0 +1,742 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~  2023.
+  ~ Alexey Rasskazov
+  -->
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/carinfo_layout">
+
+    <data>
+        <import type="android.view.View" />
+        <variable
+            name="canModel"
+            type="com.hzbhd.alexross.subarulan2.models.CANModel" />
+    </data>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/transparent">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/constraintLayout7"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:layout_marginTop="8dp"
+                android:background="@color/transparent"
+                android:visibility="visible"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/imageView4"
+                    android:layout_width="915dp"
+                    android:layout_height="206dp"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginStart="8dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:srcCompat="@mipmap/settings" />
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/constraintLayout2"
+                    android:layout_width="150dp"
+                    android:layout_height="145dp"
+                    android:layout_marginBottom="8dp"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginTop="8dp"
+                    app:layout_constraintBottom_toBottomOf="@+id/imageView4"
+                    app:layout_constraintStart_toStartOf="@+id/imageView4"
+                    app:layout_constraintTop_toTopOf="@+id/imageView4"
+                    app:layout_constraintVertical_bias="0.6">
+
+                    <TextView
+                        android:id="@+id/textView22"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="8dp"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginTop="52dp"
+                        android:fontFamily="@font/rubik_light"
+                        android:text="Light"
+                        android:textColor="@color/mainColor"
+                        android:textSize="30sp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="@+id/button" />
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/imageView13"
+                        android:layout_width="0dp"
+                        android:layout_height="9dp"
+                        android:layout_marginBottom="8dp"
+                        android:layout_marginEnd="24dp"
+                        android:layout_marginStart="24dp"
+                        android:scaleType="centerCrop"
+                        app:layout_constraintBottom_toBottomOf="@+id/button"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:srcCompat="@mipmap/settings_on" />
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/imageView13_off"
+                        android:layout_width="0dp"
+                        android:layout_height="9dp"
+                        android:layout_marginBottom="8dp"
+                        android:layout_marginEnd="24dp"
+                        android:layout_marginStart="24dp"
+                        android:visibility="@{!canModel.lightOn?View.VISIBLE : View.INVISIBLE}"
+                        android:scaleType="centerCrop"
+                        app:layout_constraintBottom_toBottomOf="@+id/button"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:srcCompat="@mipmap/settings_off" />
+
+                    <Button
+                        android:id="@+id/button"
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:background="@color/transparent"
+                        android:onClick="@{canModel::onClickLight}"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/constraintLayout3"
+                    android:layout_width="150dp"
+                    android:layout_height="145dp"
+                    android:layout_marginBottom="8dp"
+                    android:layout_marginTop="8dp"
+                    app:layout_constraintBottom_toBottomOf="@+id/imageView4"
+                    app:layout_constraintStart_toEndOf="@+id/constraintLayout2"
+                    app:layout_constraintTop_toTopOf="@+id/imageView4"
+                    app:layout_constraintVertical_bias="0.6">
+
+                    <TextView
+                        android:id="@+id/textView23"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="8dp"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginTop="52dp"
+                        android:fontFamily="@font/rubik_light"
+                        android:text="Beep"
+                        android:textColor="@color/mainColor"
+                        android:textSize="30sp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.507"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="@+id/button1" />
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/imageView14"
+                        android:layout_width="0dp"
+                        android:layout_height="9dp"
+                        android:layout_marginBottom="8dp"
+                        android:layout_marginEnd="24dp"
+                        android:layout_marginStart="24dp"
+                        app:srcCompat="@mipmap/settings_on"
+                        android:scaleType="centerCrop"
+                        app:layout_constraintBottom_toBottomOf="@+id/button1"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent" />
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/imageView14_off"
+                        android:layout_width="0dp"
+                        android:layout_height="9dp"
+                        android:layout_marginBottom="8dp"
+                        android:layout_marginEnd="24dp"
+                        android:layout_marginStart="24dp"
+                        app:srcCompat="@mipmap/settings_off"
+                        android:scaleType="centerCrop"
+                        android:visibility="@{!canModel.beepOn?View.VISIBLE : View.INVISIBLE}"
+                        app:layout_constraintBottom_toBottomOf="@+id/button1"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent" />
+                    <Button
+                        android:id="@+id/button1"
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:background="@color/transparent"
+                        android:onClick="@{canModel::onClickBeep}"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/constraintLayout4"
+                    android:layout_width="150dp"
+                    android:layout_height="145dp"
+                    android:layout_marginBottom="8dp"
+                    android:layout_marginTop="8dp"
+                    app:layout_constraintBottom_toBottomOf="@+id/imageView4"
+                    app:layout_constraintStart_toEndOf="@+id/constraintLayout3"
+                    app:layout_constraintTop_toTopOf="@+id/imageView4"
+                    app:layout_constraintVertical_bias="0.6">
+
+                    <TextView
+                        android:id="@+id/textView25"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="8dp"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginTop="52dp"
+                        android:fontFamily="@font/rubik_light"
+                        android:text="Key Alert"
+                        android:textColor="@color/mainColor"
+                        android:textSize="30sp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.507"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="@+id/button2" />
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/imageView15"
+                        android:layout_width="0dp"
+                        android:layout_height="9dp"
+                        android:layout_marginBottom="8dp"
+                        android:layout_marginEnd="24dp"
+                        android:layout_marginStart="24dp"
+                        app:srcCompat="@mipmap/settings_on"
+                        android:scaleType="centerCrop"
+                        app:layout_constraintBottom_toBottomOf="@+id/button2"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent" />
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/imageView15_off"
+                        android:layout_width="0dp"
+                        android:layout_height="9dp"
+                        android:layout_marginBottom="8dp"
+                        android:layout_marginEnd="24dp"
+                        android:layout_marginStart="24dp"
+                        app:srcCompat="@mipmap/settings_off"
+                        android:scaleType="centerCrop"
+                        android:visibility="@{!canModel.keyAlert?View.VISIBLE : View.INVISIBLE}"
+                        app:layout_constraintBottom_toBottomOf="@+id/button2"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent" />
+
+                    <Button
+                        android:id="@+id/button2"
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:background="@color/transparent"
+                        android:onClick="@{canModel::onClickKeyAlert}"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/constraintLayout5"
+                    android:layout_width="150dp"
+                    android:layout_height="145dp"
+                    android:layout_marginBottom="8dp"
+                    android:layout_marginTop="8dp"
+                    app:layout_constraintBottom_toBottomOf="@+id/imageView4"
+                    app:layout_constraintStart_toEndOf="@+id/constraintLayout4"
+                    app:layout_constraintTop_toTopOf="@+id/imageView4"
+                    app:layout_constraintVertical_bias="0.6">
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/imageView18"
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginBottom="8dp"
+                        app:layout_constraintBottom_toBottomOf="@+id/buttonLightDown"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="@+id/buttonLightUp"
+                        app:srcCompat="@mipmap/settings_up_down" />
+
+                    <Button
+                        android:id="@+id/buttonLightUp"
+                        android:layout_width="0dp"
+                        android:layout_height="65dp"
+                        android:layout_marginTop="8dp"
+                        android:background="@color/transparent"
+                        android:onClick="@{canModel::onClickRoomLightUp}"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.0"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/textView26"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginTop="32dp"
+                        android:layout_marginEnd="8dp"
+                        android:fontFamily="@font/rubik_light"
+                        android:text="Room Light"
+                        android:textColor="@color/mainColor"
+                        android:textSize="24sp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.727"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/textView1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginEnd="8dp"
+                        android:fontFamily="@font/rubik_light"
+                        android:text="@{canModel.roomLight , default=`Normal`}"
+                        android:textColor="@color/mainColor"
+                        android:textSize="24sp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/buttonLightUp" />
+                    <Button
+                        android:id="@+id/buttonLightDown"
+                        android:layout_width="0dp"
+                        android:layout_height="65dp"
+                        android:background="@color/transparent"
+                        android:onClick="@{canModel::onClickRoomLightDown}"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/constraintLayout6"
+                    android:layout_width="150dp"
+                    android:layout_height="145dp"
+                    android:layout_marginBottom="8dp"
+                    android:layout_marginTop="8dp"
+                    app:layout_constraintBottom_toBottomOf="@+id/imageView4"
+                    app:layout_constraintStart_toEndOf="@+id/constraintLayout5"
+                    app:layout_constraintTop_toTopOf="@+id/imageView4"
+                   >
+
+                    <TextView
+                        android:id="@+id/textView27"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="8dp"
+                        android:layout_marginEnd="8dp"
+                        android:layout_marginStart="8dp"
+                        android:fontFamily="@font/rubik_light"
+                        android:text="Defogger"
+                        android:textColor="@color/mainColor"
+                        android:textSize="24sp"
+                        app:layout_constraintBottom_toTopOf="@+id/textView2"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.545"
+                        app:layout_constraintStart_toStartOf="parent" />
+
+                    <TextView
+                        android:id="@+id/textView2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="8dp"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginTop="76dp"
+                        android:fontFamily="@font/rubik_light"
+                        android:text="@{canModel.defogger?`Continuous`:`15 min` , default=`Continuous`}"
+                        android:textColor="@color/mainColor"
+                        android:textSize="24sp"
+                        app:layout_constraintEnd_toEndOf="@+id/button4"
+                        app:layout_constraintHorizontal_bias="0.513"
+                        app:layout_constraintStart_toStartOf="@+id/button4"
+                        app:layout_constraintTop_toTopOf="@+id/button4" />
+
+
+                    <Button
+                        android:id="@+id/button4"
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:background="@color/transparent"
+                        android:onClick="@{canModel::onClickDefogger}"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="150dp"
+                    android:layout_height="145dp"
+                    android:layout_marginBottom="8dp"
+                    android:layout_marginTop="8dp"
+                    app:layout_constraintBottom_toBottomOf="@+id/imageView4"
+                    app:layout_constraintStart_toEndOf="@+id/constraintLayout6"
+                    app:layout_constraintTop_toTopOf="@+id/imageView4"
+                     >
+
+                    <TextView
+                        android:id="@+id/textView28"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="8dp"
+                        android:layout_marginEnd="8dp"
+                        android:layout_marginStart="8dp"
+                        android:fontFamily="@font/rubik_light"
+                        android:text="Deicer"
+                        android:textColor="@color/mainColor"
+                        android:textSize="24sp"
+                        app:layout_constraintBottom_toTopOf="@+id/textView3"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.545"
+                        app:layout_constraintStart_toStartOf="parent" />
+
+                    <TextView
+                        android:id="@+id/textView3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="8dp"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginTop="76dp"
+                        android:fontFamily="@font/rubik_light"
+                        android:text="@{canModel.deicer?`Continuous`:`15 min` , default=`Continuous`}"
+                        android:textColor="@color/mainColor"
+                        android:textSize="24sp"
+                        app:layout_constraintEnd_toEndOf="@+id/button5"
+                        app:layout_constraintHorizontal_bias="0.513"
+                        app:layout_constraintStart_toStartOf="@+id/button5"
+                        app:layout_constraintTop_toTopOf="@+id/button5" />
+
+                    <Button
+                        android:id="@+id/button5"
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:background="@color/transparent"
+                        android:onClick="@{canModel::onClickDeicer}"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/constraintLayoutMain2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/transparent"
+                android:visibility="visible"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/constraintLayout7">
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/imageViewSet2"
+                    android:layout_width="915dp"
+                    android:layout_height="206dp"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginStart="8dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:srcCompat="@mipmap/settings" />
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/constraintLayout2_1"
+                    android:layout_width="150dp"
+                    android:layout_height="145dp"
+                    android:layout_marginBottom="8dp"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginTop="8dp"
+                    app:layout_constraintBottom_toBottomOf="@+id/imageViewSet2"
+                    app:layout_constraintStart_toStartOf="@+id/imageViewSet2"
+                    app:layout_constraintTop_toTopOf="@+id/imageViewSet2"
+                    app:layout_constraintVertical_bias="0.6">
+
+                    <TextView
+                        android:id="@+id/textView2_1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="8dp"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginTop="52dp"
+                        android:fontFamily="@font/rubik_light"
+                        android:text="Alarm"
+                        android:textColor="@color/mainColor"
+                        android:textSize="30sp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="@+id/button2_1" />
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/imageView2_1"
+                        android:layout_width="0dp"
+                        android:layout_height="9dp"
+                        android:layout_marginBottom="8dp"
+                        android:layout_marginEnd="24dp"
+                        android:layout_marginStart="24dp"
+                        app:srcCompat="@mipmap/settings_on"
+                        android:scaleType="centerCrop"
+
+                        app:layout_constraintBottom_toBottomOf="@+id/button2_1"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent" />
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/imageView2_1_off"
+                        android:layout_width="0dp"
+                        android:layout_height="9dp"
+                        android:layout_marginBottom="8dp"
+                        android:layout_marginEnd="24dp"
+                        android:layout_marginStart="24dp"
+
+                        app:srcCompat="@mipmap/settings_off"
+                        android:scaleType="centerCrop"
+                        android:visibility="@{!canModel.alarm?View.VISIBLE : View.INVISIBLE}"
+
+                        app:layout_constraintBottom_toBottomOf="@+id/button2_1"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent" />
+
+                    <Button
+                        android:id="@+id/button2_1"
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:background="@color/transparent"
+                        android:onClick="@{canModel::onClickAlarm}"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/constraintLayout"
+                    android:layout_width="150dp"
+                    android:layout_height="145dp"
+                    android:layout_marginBottom="8dp"
+                    android:layout_marginTop="8dp"
+                    app:layout_constraintBottom_toBottomOf="@+id/imageViewSet2"
+                    app:layout_constraintStart_toEndOf="@+id/constraintLayout2_1"
+                    app:layout_constraintTop_toTopOf="@+id/imageViewSet2"
+                    app:layout_constraintVertical_bias="0.6">
+
+                    <TextView
+                        android:id="@+id/textView2_2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="8dp"
+                        android:layout_marginEnd="8dp"
+                        android:layout_marginStart="8dp"
+                        android:fontFamily="@font/rubik_light"
+                        android:text="Delay"
+                        android:textColor="@color/mainColor"
+                        android:textSize="24sp"
+                        app:layout_constraintBottom_toTopOf="@+id/textView2_2_1"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.545"
+                        app:layout_constraintStart_toStartOf="parent" />
+
+                    <TextView
+                        android:id="@+id/textView2_2_1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="8dp"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginTop="76dp"
+                        android:fontFamily="@font/rubik_light"
+                        android:text="@{canModel.delay?`30 sec`:`0 sec` , default=`30 sec`}"
+                        android:textColor="@color/mainColor"
+                        android:textSize="24sp"
+                        app:layout_constraintEnd_toEndOf="@+id/button2_2"
+                        app:layout_constraintHorizontal_bias="0.513"
+                        app:layout_constraintStart_toStartOf="@+id/button2_2"
+                        app:layout_constraintTop_toTopOf="@+id/button2_2" />
+
+
+                    <Button
+                        android:id="@+id/button2_2"
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:background="@color/transparent"
+                        android:onClick="@{canModel::onClickDelay}"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/constraintLayout8"
+                    android:layout_width="150dp"
+                    android:layout_height="145dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginBottom="8dp"
+                    app:layout_constraintBottom_toBottomOf="@+id/imageViewSet2"
+                    app:layout_constraintStart_toEndOf="@+id/constraintLayout"
+                    app:layout_constraintTop_toTopOf="@+id/imageViewSet2"
+                    app:layout_constraintVertical_bias="0.6">
+
+                    <TextView
+                        android:id="@+id/textView2_3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginEnd="8dp"
+                        android:layout_marginBottom="8dp"
+                        android:fontFamily="@font/rubik_light"
+                        android:text="Reset settings"
+                        android:textAlignment="center"
+                        android:textColor="@color/mainColor"
+                        android:textSize="24sp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="@+id/button2_3"
+                        app:layout_constraintStart_toStartOf="@+id/button2_3"
+                        app:layout_constraintTop_toTopOf="@+id/button2_3" />
+
+                    <Button
+                        android:id="@+id/button2_3"
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:background="@color/transparent"
+                        android:onClick="@{canModel::onClickReset}"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/constraintLayout9"
+                    android:layout_width="150dp"
+                    android:layout_height="145dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginBottom="8dp"
+                    app:layout_constraintBottom_toBottomOf="@+id/imageViewSet2"
+                    app:layout_constraintStart_toEndOf="@+id/constraintLayout8"
+                    app:layout_constraintTop_toTopOf="@+id/imageViewSet2"
+                    app:layout_constraintVertical_bias="0.511">
+
+                    <TextView
+                        android:id="@+id/textView2_4"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginEnd="8dp"
+                        android:layout_marginBottom="8dp"
+                        android:fontFamily="@font/rubik_light"
+                        android:text="App settings"
+                        android:textAlignment="center"
+                        android:textColor="@color/mainColor"
+                        android:textSize="24sp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="@+id/button2_4"
+                        app:layout_constraintStart_toStartOf="@+id/button2_4"
+                        app:layout_constraintTop_toTopOf="@+id/button2_4" />
+
+                    <Button
+                        android:id="@+id/button2_4"
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:background="@color/transparent"
+
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/constraintLayout10"
+                    android:layout_width="150dp"
+                    android:layout_height="145dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginBottom="8dp"
+                    app:layout_constraintBottom_toBottomOf="@+id/imageViewSet2"
+                    app:layout_constraintStart_toEndOf="@+id/constraintLayout9"
+                    app:layout_constraintTop_toTopOf="@+id/imageViewSet2"
+                    app:layout_constraintVertical_bias="0.511">
+
+                    <TextView
+                        android:id="@+id/textView2_5"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginEnd="8dp"
+                        android:layout_marginBottom="8dp"
+                        android:fontFamily="@font/rubik_light"
+                        android:text="Update    MCU"
+                        android:textAlignment="center"
+                        android:textColor="@color/mainColor"
+                        android:textSize="24sp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="@+id/button2_5"
+                        app:layout_constraintStart_toStartOf="@+id/button2_5"
+                        app:layout_constraintTop_toTopOf="@+id/button2_5" />
+
+                    <Button
+                        android:id="@+id/button2_5"
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:background="@color/transparent"
+                        android:onClick="@{canModel::onClickUpdate}"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="150dp"
+                    android:layout_height="145dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginBottom="8dp"
+                    app:layout_constraintBottom_toBottomOf="@+id/imageViewSet2"
+                    app:layout_constraintStart_toEndOf="@+id/constraintLayout10"
+                    app:layout_constraintTop_toTopOf="@+id/imageViewSet2"
+                    app:layout_constraintVertical_bias="0.511">
+
+                    <TextView
+                        android:id="@+id/textView2_6"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginEnd="8dp"
+                        android:layout_marginBottom="8dp"
+                        android:fontFamily="@font/rubik_light"
+                        android:text="Reset MCU"
+                        android:textAlignment="center"
+                        android:textColor="@color/mainColor"
+                        android:textSize="24sp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="@+id/button2_6"
+                        app:layout_constraintStart_toStartOf="@+id/button2_6"
+                        app:layout_constraintTop_toTopOf="@+id/button2_6" />
+
+                    <Button
+                        android:id="@+id/button2_6"
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:background="@color/transparent"
+                        android:onClick="@{canModel::onClickResetMCU}"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+
+</layout>
