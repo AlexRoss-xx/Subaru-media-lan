@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~  2023.
+  ~ Alexey Rasskazov
+  -->
+
+<resources>
+    <integer name="tabvisibility"> 0</integer>
+</resources>

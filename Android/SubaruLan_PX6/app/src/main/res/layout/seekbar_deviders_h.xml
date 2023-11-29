@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!--
+  ~  2023.
+  ~ Alexey Rasskazov
+  -->
+
+<androidx.appcompat.widget.AppCompatImageView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/imageViewDevider"
+    android:layout_width="6dp"
+    android:layout_height="wrap_content"
+
+    android:background="@mipmap/devider_v"
+    android:scaleType="centerCrop" />

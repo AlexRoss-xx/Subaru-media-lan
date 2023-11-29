@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~  2023.
+  ~ Alexey Rasskazov
+  -->
+
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.hzbhd.alexross.subarulan2">
+
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+    <uses-permission android:name="android.permission.USB_PERMISSION" />
+
+    <uses-feature android:name="android.hardware.usb.host" />
+    <uses-permission android:name="android.permission.BLUETOOTH"/>
+
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW"/>
+
+    <application
+        android:name=".MyApplication"
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:launchMode="singleTask"
+
+        android:process="com.hzbhd.alexross.subarulan2"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+
+        <activity android:name=".MainActivity"    android:directBootAware="true"   >
+            <intent-filter >
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+
+            <intent-filter >
+                <action android:name="android.hardware.usb.action.USB_ACCESSORY_ATTACHED" />
+                <action android:name="android.hardware.usb.action.USB_DEVICE_ATTACHED"  />
+                <action android:name="android.hardware.usb.action.USB_DEVICE_DETACHED" />
+            </intent-filter>
+            <meta-data
+                android:name="android.hardware.usb.action.USB_DEVICE_ATTACHED"
+                android:resource="@xml/device_filter" />
+            <meta-data
+                android:name="android.hardware.usb.action.USB_DEVICE_DETACHED"
+                android:resource="@xml/device_filter" />
+        </activity>
+
+        <receiver
+            android:name=".receivers.NotificationReceiver"
+            android:exported="true"
+            android:process=":remote" />
+
+        <receiver
+            android:name=".StartServiceBroadcastReceiver"
+            android:enabled="true" android:exported="true" >
+            <intent-filter  android:enabled="true" android:exported="true" android:priority="9999">
+                <category android:name="android.intent.category.DEFAULT" />
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="com.nwd.action.ACTION_CHANGE_SOURCE" />
+            </intent-filter>
+            <intent-filter  android:enabled="true" android:exported="true" android:priority="9999">
+                <action android:name="android.intent.action.BOOT_COMPLETED_standy"  />
+                <action android:name="com.device.accon" />
+                <action android:name="com.hzbhd.action.CLEAN_MEMORY" />
+                <action android:name="com.device.poweroff" />
+                <action android:name="com.device.poweron" />
+                <action android:name="com.hzbhd.action.sourceUIfinish" />
+            </intent-filter>
+
+
+        </receiver>
+        <receiver
+            android:name=".SoundSourceBroadcastReceiver"
+            android:enabled="true" android:exported="true">
+            <intent-filter android:enabled="true" android:exported="true" android:priority="9999" >
+                <action android:name="android.intent.action.CALL"/>
+                <action android:name="playstate.change.action" />
+                <action android:name="com.hzbhd.action.initsource" />
+                <action android:name="android.intent.action.AUDIO_TRACK_PLAY_CHANGED" />
+                <action android:name="android.intent.action.MEDIA_PLAYER_PLAY_CHANGED" />
+                <action android:name="com.hzbhd.action.NAVI_CHANGED" />
+                <action android:name="android.intent.action.LOCALE_CHANGED" />
+                <action android:name="android.search.action.GLOBAL_SEARCH" />
+                <action android:name="com.hzbhd.action.sourcerealchange" />
+                <action android:name="android.media.action.CLOSE_AUDIO_EFFECT_CONTROL_SESSION" />
+                <action android:name="android.media.action.OPEN_AUDIO_EFFECT_CONTROL_SESSION" />
+                <action android:name="APP_REQUEST_START_ACTION" />
+                <action android:name="com.hzbhd.android.MCU_KEY_IND_ACTION"/>
+                <action android:name="android.intent.action.MEDIA_PLAYER_PLAY_CHANGED"/>
+            </intent-filter>
+        </receiver>
+
+        <service
+            android:name=".BackgroundUSBService"
+            android:enabled="true"
+            android:exported="false"
+            android:process=""
+            android:stopWithTask="false" >
+        </service>
+
+        <!--service
+            android:name=".BackgroundMessageService"
+            android:enabled="true"
+            android:exported="false"
+            android:process=":BackgroundMessageService"
+            android:stopWithTask="false" /-->
+
+        <activity
+            android:name=".activities.FullscreenActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:label="@string/title_activity_fullscreen"
+            android:theme="@style/FullscreenTheme" />
+
+        <activity
+            android:name=".activities.SettingsActivity"
+            android:label="@string/title_activity_settings"
+            android:theme="@style/AppThemeSettings">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".MainActivity" />
+
+            <intent-filter>
+                <action android:name="com.hzbhd.alexross.subarulan2.activities.SettingsActivity" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+
+
+       <!-- <activity
+            android:name=".UsbEventReceiverActivity"
+            android:excludeFromRecents="true"
+            android:exported="false"
+            android:label="SubaruLan"
+            android:noHistory="true"
+            android:process=":UsbEventReceiverActivityProcess"
+            android:taskAffinity="com.hzbhd.alexross.subarulan2">
+
+            <intent-filter>
+                <action android:name="android.hardware.usb.action.USB_DEVICE_ATTACHED" />
+                <action android:name="android.hardware.usb.action.USB_DEVICE_DETACHED" />
+            </intent-filter>
+            <meta-data
+                android:name="android.hardware.usb.action.USB_DEVICE_ATTACHED"
+                android:resource="@xml/device_filter" />
+            <meta-data
+                android:name="android.hardware.usb.action.USB_DEVICE_DETACHED"
+                android:resource="@xml/device_filter" />
+        </activity>-->
+    </application>
+
+</manifest>

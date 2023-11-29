@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="utf-8"?><!--
+  ~  2023.
+  ~ Alexey Rasskazov
+  -->
+
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <SwitchPreference
+        android:defaultValue="false"
+        android:key="ASSIST"
+        android:summary="Show  onscreen  info"
+        android:title="Info" />
+    <com.thebluealliance.spectrum.SpectrumPreference
+        android:defaultValue="@color/md_deep_orange_A700"
+        android:dependency="ASSIST"
+        android:key="assist_preference"
+        android:summary="Color for onscreen info "
+        android:title="Color"
+        app:spectrum_colors="@array/demo_colors" />
+
+
+    <ListPreference
+        android:defaultValue="0"
+        android:dependency="ASSIST"
+        android:entries="@array/infoType"
+        android:entryValues="@array/infoType_values"
+        android:key="assist_preference_infoType"
+        android:title="Info window type " />
+
+    <SwitchPreference
+        android:defaultValue="true"
+        android:key="@string/settings_key_tpms"
+        android:summary="@string/pref_description_TPMS"
+        android:title="@string/pref_title_TPMS"
+
+        />
+
+
+    <SwitchPreference
+        android:defaultValue="false"
+        android:key="ENGINE_TEMP_WARNING"
+        android:summary="@string/pref_description_engineTemp"
+        android:title="@string/pref_title_engineTemp" />
+    <PreferenceCategory
+        android:key="ENGINE_TEMP_WARNING"
+        android:title="Engine temperature warning">
+        <com.hzbhd.alexross.subarulan2.EditTextPreference
+            android:capitalize="words"
+            android:defaultValue="100"
+            android:dependency="ENGINE_TEMP_WARNING"
+            android:inputType="number"
+            android:key="ENGINE_TEMP_WARNING_VALUE"
+            android:maxLines="1"
+            android:numeric="integer"
+            android:selectAllOnFocus="true"
+            android:singleLine="true"
+            android:summary="Engine  temperature warning value is "
+            android:title="Engine  temperature warning value" />
+        <SwitchPreference
+            android:defaultValue="false"
+            android:dependency="ENGINE_TEMP_WARNING"
+            android:key="ENGINE_TEMP_SHOW"
+            android:summary="Show engine temperature on the top bar"
+            android:title="Display temperature " />
+    </PreferenceCategory>
+
+    <SwitchPreference
+        android:defaultValue="false"
+        android:key="FUEL_CONS"
+        android:summary="Real time Fuel consumption"
+        android:title="Fuel consumption"
+        />
+
+    <SwitchPreference
+        android:defaultValue="false"
+        android:dependency="FUEL_CONS"
+        android:key="FUEL_CONS_CHART"
+        android:summary="Always show real time fuel consumption chart"
+        android:title="Fuel consumption chart" />
+
+    <ListPreference
+        android:defaultValue="0"
+        android:dependency="FUEL_CONS"
+        android:entries="@array/ChartType"
+        android:entryValues="@array/ChartTypeValues"
+        android:key="preference_ChartType"
+        android:title="Chart type" />
+
+
+    <com.hzbhd.alexross.subarulan2.EditTextPreference
+        android:capitalize="words"
+
+        android:defaultValue="1.53"
+        android:inputType="numberDecimal"
+        android:key="FUEL_CORRECTION"
+        android:maxLines="1"
+        android:numeric="decimal"
+        android:selectAllOnFocus="true"
+        android:singleLine="true"
+        android:summary="Fuel consumption = ECU fuel consumption * "
+        android:title="Fuel correction" />
+
+    <com.hzbhd.alexross.subarulan2.EditTextPreference
+        android:capitalize="words"
+
+        android:defaultValue="0"
+        android:inputType="numberSigned|numberDecimal"
+        android:key="TEMP_CORRECTION"
+        android:maxLines="1"
+        android:numeric="decimal"
+        android:selectAllOnFocus="true"
+        android:singleLine="true"
+        android:summary="Outside Temperature offset "
+        android:title="Outside Temperature correction " />
+
+    <!-- NOTE: EditTextPreference accepts EditText attributes. -->
+    <!-- NOTE: EditTextPreference's summary should be set to its value by the activity code. -->
+    <!--  <EditTextPreference
+          android:capitalize="words"
+          android:defaultValue="@string/pref_default_display_name"
+          android:inputType="textCapWords"
+          android:key="example_text"
+          android:maxLines="1"
+          android:selectAllOnFocus="true"
+          android:singleLine="true"
+          android:title="@string/pref_title_display_name" />
+  -->
+    <!-- NOTE: Hide buttons to simplify the UI. Users can touch outside the dialog to
+         dismiss it. -->
+    <!-- NOTE: ListPreference's summary should be set to its value by the activity code. -->
+    <!--  <ListPreference
+          android:defaultValue="-1"
+          android:entries="@array/pref_example_list_titles"
+          android:entryValues="@array/pref_example_list_values"
+          android:key="example_list"
+          android:negativeButtonText="@null"
+          android:positiveButtonText="@null"
+          android:title="@string/pref_title_add_friends_to_messages" />
+      -->
+    <PreferenceCategory android:title="Launch Application">
+        <CheckBoxPreference
+            android:defaultValue="false"
+            android:disableDependentsState="true"
+            android:key="pref_show_home_enable"
+            android:summary="Show home after start"
+            android:title="Show home after start" />
+        <CheckBoxPreference
+            android:defaultValue="false"
+            android:dependency="pref_show_home_enable"
+            android:key="pref_connect_launch_enable"
+            android:summary="Launch an application after start"
+            android:title="Launch Application after start" />
+
+        <com.hzbhd.alexross.subarulan2.AppSelectorPreference
+            android:dependency="pref_connect_launch_enable"
+            android:key="pref_connect_package_name"
+            android:summary="Select application to launch"
+            android:title="Select Application" />
+    </PreferenceCategory>
+</PreferenceScreen>

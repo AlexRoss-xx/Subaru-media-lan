@@ -78,18 +78,17 @@ Dependency Library :
 Android Studio Arctic Fox | 2020.3.1 Patch 2  
 Runtime version: 11.0.10
 
+The application is designed as a universal application and capable of running on tablets. However, for full integration into the car environment and Android unit OS, specific integrations tailored.
+Supported platforms  : RK3399 (PX6). MCU : STM 32 with system namespace  com.hzbhd.**   and    Allwinner T3  K2001   namespace com.nwd.**  .There is no guarantee that the Android unit manufacturer will release new OS firmware, and updates may result in the loss of certain functionalities. Full integration often requires reverse engineering, as changes in the OS firmware can impact the application's compatibility!  
+In such cases, reverse engineering becomes essential to understand the modifications made by manufacturers and to make necessary adjustments for seamless integration with the updated firmware.
+Some manufacturers may implement specific optimizations or behaviors on their Android devices. These can include custom memory management strategies. Details about manufacturer-specific behaviors would be specific to each manufacturer and their modifications to the Android OS, that why Android application  has  com.hzbhd.***** (or com.nwd.** for nwd platform) namespaces. OS  (Android for auto unit) thinks that package is the system package(pre-installed system apps) and  allow to skip unload app from memory (clean memory process).  
 
+To develop the application for PX6 and NWD units, the process involves obtaining firmware images. Start by acquiring firmware images specific to each platform. Unpacking these images requires special programs, readily available on platforms like XDA forums (Android auto unit = tablet plus  specific components such as radio and sound amplifier parts).
 
+Once the images are unpacked, inspect the structure to locate the main system applications. Typically, the primary application consists of several background services that manage sound inputs, outputs, and Bluetooth functionalities. Identify the main service and proceed to decompile it to access its codebase. This step involves reverse engineering to understand the Intents used within the system and determine the parameters that can be sent with those Intents.
 
+Additionally, ensure that the device's OS allows switching into Developer mode. This mode is essential for activities such as sniffing Intents and debugging the application, providing valuable insights during the development and integration process.
 
-
-The application is developed as universal  application that can be run on tablet also  but   for full integration into car environment and android unit OS contains  platform specific ingerations .  platforms : RK3399 (PX6). MCU : STM 32        system namespace  com.hzbhd.**   and    Allwinner T3  K2001   namespace com.nwd.**  
-Some manufacturers may implement specific optimizations or behaviors on their Android devices. These can include custom memory management strategies. However, details about manufacturer-specific behaviors would be specific to each manufacturer and their modifications to the Android OS,that why Android application  has com.hzbhd.***** (or com.nwd.** for nwd platform) . OS  (Android for auto unit) thinks that package is the system package(pre-installed apps) and  allow to skip unload app from memory (clean memory process).  
-
-Why this application is not universal for all devices , because    auto unit devices manufactures use their own versions of systems (Android OS) and fragmentation is very huge.  But it is still android application that can be run on a Tab , connected to the arduino  and show car information.
-How I  did it for my PX6 and NWD units. First of all you need firmware images.  
-Then unpack images (each platform has special  programs that allow to do this, all programs can be found in XDA forums for that platform (android auto unit = tablet  plus car head unit specific like radio and sound amplifier parts )) to see structure. Find main system applications, usually the main application contains several backgroud services that control sound inputs ,outputs and  bluetoth. When  main service  found  , need to decompile  the service to see it code base and do  reverse engineering  to find what Intents  are using inside  that system  and what parameters  can be send with Intents.
-Also  device OS must be  able to switch into Developer mode to  sniff intends and debug application. 
 
 ## Details:  
 
@@ -255,4 +254,15 @@ Or for example tuner messages
 //60 06 02 11 02 BB 87 9B BB 87 9B BB 90 1B BB 98 1B B1 06 1B B1 07 9B  fm stations
 ~~~
 
-All models with decoding can be found  in models dir (CANModel, CDChangerModel, RSECDCModel and other)
+All modes with decoding can be found  in models dir (CANModel, CDChangerModel, RSECDCModel and other)
+
+![PCB](./assets/can.jpg)  
+![PCB](./assets/tuner.png)  
+![PCB](./assets/sound.png)  
+![PCB](./assets/settings.png) 
+
+Because  application can work in the backgroud  is important to  enable  "display over other apps" which alow to show  changed car information
+![PCB](./assets/overlay.png) 
+
+Rear DVD  entertainment can be also connected  to the Android using  video out (Not all android units contain  video out)
+![PCB](./assets/dvd.jpg) 

@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~  2023.
+  ~ Alexey Rasskazov
+  -->
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:bind="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/sound_layout">
+
+    <data>
+        <import type="android.view.View" />
+        <variable
+            name="soundModel"
+            type="com.hzbhd.alexross.subarulan2.models.SoundSettingsModel" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/colorAccent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="visible">
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintGuide_begin="167dp"
+                />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/imageView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:contentDescription="@string/tuner_background"
+                android:scaleType="centerCrop"
+                android:visibility="visible"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@mipmap/artboard1" />
+
+            <com.hzbhd.alexross.subarulan2.controls.seekBar.VerticalSeekbarWithIntervals
+                android:id="@+id/vseekbarWithIntervals_Bass"
+                android:layout_width="70dp"
+                android:layout_height="332dp"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentStart="true"
+                android:layout_marginStart="84dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/guideline"
+                app:mode="@{1}"
+                app:modestyle="@{soundModel.active}"
+                app:progressValue="@{soundModel.bass}">
+
+            </com.hzbhd.alexross.subarulan2.controls.seekBar.VerticalSeekbarWithIntervals>
+
+            <com.hzbhd.alexross.subarulan2.controls.seekBar.VerticalSeekbarWithIntervals
+                android:id="@+id/vseekbarWithIntervals_Mid"
+                android:layout_width="70dp"
+                android:layout_height="332dp"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentStart="true"
+                android:layout_marginStart="24dp"
+                app:layout_constraintStart_toEndOf="@+id/vseekbarWithIntervals_Bass"
+                app:layout_constraintTop_toTopOf="@+id/guideline"
+                app:mode="@{2}"
+                app:modestyle="@{soundModel.active}"
+                app:progressValue="@{soundModel.mid}" />
+
+            <com.hzbhd.alexross.subarulan2.controls.seekBar.VerticalSeekbarWithIntervals
+                android:id="@+id/vseekbarWithIntervals_Treble"
+                android:layout_width="70dp"
+                android:layout_height="332dp"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentStart="true"
+                android:layout_marginStart="25dp"
+                app:layout_constraintStart_toEndOf="@+id/vseekbarWithIntervals_Mid"
+                app:layout_constraintTop_toTopOf="@+id/guideline"
+                app:mode="@{3}"
+                app:modestyle="@{soundModel.active}"
+                app:progressValue="@{soundModel.treble}"
+                />
+
+            <com.hzbhd.alexross.subarulan2.controls.seekBar.HorizontalSeekbarWithIntervals
+                android:id="@+id/hseekbarWithIntervals_Balance"
+                android:layout_width="254dp"
+                android:layout_height="45dp"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentStart="true"
+                android:layout_marginBottom="8dp"
+                app:layout_constraintBottom_toTopOf="@+id/fader"
+                app:layout_constraintEnd_toEndOf="@+id/fader"
+                app:layout_constraintHorizontal_bias="0.32"
+                app:layout_constraintStart_toStartOf="@+id/fader"
+                app:mode="@{4}"
+                app:modestyle="@{soundModel.active}"
+                app:progressValue="@{soundModel.balance}" />
+
+            <com.hzbhd.alexross.subarulan2.controls.seekBar.VerticalSeekbarWithIntervals
+                android:id="@+id/vseekbarWithIntervals_Fade"
+                android:layout_width="57dp"
+                android:layout_height="332dp"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentStart="true"
+                app:layout_constraintBottom_toBottomOf="@+id/fader"
+                app:layout_constraintEnd_toStartOf="@+id/fader"
+                app:layout_constraintTop_toTopOf="@+id/fader"
+                app:layout_constraintVertical_bias="0.0"
+                app:mode="@{5}"
+                app:modestyle="@{soundModel.active}"
+                app:progressValue="@{soundModel.fade}" />
+
+
+            <com.hzbhd.alexross.subarulan2.controls.seekBar.FaderControl
+                android:id="@+id/fader"
+                android:layout_width="259dp"
+                android:layout_height="332dp"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentStart="true"
+                android:layout_marginStart="524dp"
+                android:layout_marginTop="176dp"
+                app:balanceValue="@{soundModel.balance}"
+
+                app:fadeValue="@{soundModel.fade}"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/textView8"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:layout_marginEnd="40dp"
+                android:fontFamily="@font/rubik_light"
+                android:text="Bass"
+                android:textColor="@color/mainColor"
+                android:textSize="18sp"
+                app:layout_constraintBottom_toTopOf="@+id/vseekbarWithIntervals_Bass"
+                app:layout_constraintEnd_toEndOf="@+id/vseekbarWithIntervals_Bass" />
+
+            <TextView
+                android:id="@+id/textView9"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:layout_marginEnd="28dp"
+                android:fontFamily="@font/rubik_light"
+                android:text="Middle"
+                android:textColor="@color/mainColor"
+                android:textSize="18sp"
+                app:layout_constraintBottom_toTopOf="@+id/vseekbarWithIntervals_Mid"
+                app:layout_constraintEnd_toEndOf="@+id/vseekbarWithIntervals_Mid" />
+
+            <TextView
+                android:id="@+id/textView10"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:layout_marginEnd="32dp"
+                android:fontFamily="@font/rubik_light"
+                android:text="Treble"
+                android:textColor="@color/mainColor"
+                android:textSize="18sp"
+                app:layout_constraintBottom_toTopOf="@+id/vseekbarWithIntervals_Treble"
+                app:layout_constraintEnd_toEndOf="@+id/vseekbarWithIntervals_Treble" />
+
+            <TextView
+                android:id="@+id/textView11"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:layout_marginEnd="36dp"
+                android:fontFamily="@font/rubik_light"
+                android:text="Fader"
+                android:textColor="@color/mainColor"
+                android:textSize="18sp"
+                app:layout_constraintBottom_toTopOf="@+id/vseekbarWithIntervals_Fade"
+                app:layout_constraintEnd_toEndOf="@+id/vseekbarWithIntervals_Fade" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </LinearLayout>
+</layout>

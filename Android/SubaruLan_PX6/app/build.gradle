@@ -1,0 +1,182 @@
+/*
+ *  2023.
+ * Alexey Rasskazov
+ */
+
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-kapt'
+apply plugin: 'kotlin-android-extensions'
+
+android {
+    signingConfigs {
+        config {
+
+        }
+        release {
+
+        }
+        debug {
+        }
+    }
+    compileSdkVersion 29
+    defaultConfig {
+        applicationId "com.hzbhd.alexross.subarulan2"
+        minSdkVersion 25
+        targetSdkVersion 25
+        versionCode 1
+        versionName '1.2.8.7'
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        vectorDrawables.useSupportLibrary = true
+        externalNativeBuild {
+            cmake {
+                cppFlags ""
+            }
+        }
+        signingConfig signingConfigs.config
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments = [
+                        "room.schemaLocation"  : "$projectDir/schemas".toString(),
+                        "room.incremental"     : "true",
+                        "room.expandProjection": "true"]
+            }
+        }
+    }
+
+    dataBinding {
+        enabled = true
+    }
+    buildTypes {
+        release {
+            signingConfig signingConfigs.release
+            postprocessing {
+                removeUnusedCode true
+                removeUnusedResources true
+                obfuscate true
+                optimizeCode true
+                proguardFile 'proguard-rules.pro'
+            }
+        }
+        debug {
+            postprocessing {
+                //removeUnusedCode true
+                removeUnusedResources true
+            }
+        }
+    }
+    flavorDimensions "version"
+    productFlavors {
+        prod {
+            applicationId "com.hzbhd.alexross.subarulan2"
+            dimension "version"
+            signingConfig signingConfigs.config
+        }
+    }
+
+    applicationVariants.all { variant ->
+        variant.outputs.all { output ->
+            def project = "Subaru"
+            def SEP = "_"
+            def flavor = variant.productFlavors[0].name
+
+            def version = variant.versionName
+            def date = new Date();
+            def formattedDate = date.format('ddMMyy_HHmm')
+            def newApkName = ""
+
+            newApkName = project + SEP + version + ".apk"
+
+
+            outputFileName = new File(newApkName)
+        }
+    }
+
+    def props = new Properties()
+    if (rootProject.file("release.properties").exists()) {
+        project.logger.info('INFO: Set the values storeFile, storePassword, keyAlias, and keyPassword in release.properties to sign the release.')
+
+        props.load(new FileInputStream(rootProject.file("release.properties")))
+
+      //  android.signingConfigs.release.storeFile rootProject.file(props.keyStore)
+      //  android.signingConfigs.release.storePassword props.keyStorePassword
+      //  android.signingConfigs.release.keyAlias props.keyAlias
+      //  android.signingConfigs.release.keyPassword props.keyAliasPassword
+
+
+    } else {
+        project.logger.info('INFO: No sign')
+        android.buildTypes.release.signingConfig = null
+        android.buildTypes.debug.signingConfig = null
+    }
+
+    externalNativeBuild {
+        cmake {
+            path "src/main/cpp/CMakeLists.txt"
+            version "3.10.2"
+        }
+    }
+
+    testOptions {
+        unitTests.returnDefaultValues = true
+    }
+
+    lintOptions {
+        abortOnError false
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    // ndkVersion = '21.0.+'
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'], exclude: [])
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.3.31"
+
+    implementation 'androidx.appcompat:appcompat:1.0.0'
+    implementation 'androidx.preference:preference:1.0.0'
+
+    implementation "androidx.constraintlayout:constraintlayout:1.1.3"
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+    implementation 'androidx.vectordrawable:vectordrawable:1.0.0'
+    implementation 'androidx.legacy:legacy-support-core-utils:1.0.0'
+
+    implementation 'info.androidhive:fontawesome:0.0.5'
+    implementation 'androidx.paging:paging-common:2.1.1'
+
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.0'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.0'
+    implementation 'com.jaredrummler:android-processes:1.1.1'
+    implementation 'com.google.code.gson:gson:2.8.5'
+    implementation 'org.greenrobot:eventbus:3.1.1'
+    implementation files('libs/IKernelLib_V0.0.1.jar')
+    implementation files('libs/d2xx.jar')
+    implementation "com.stringcare:library:$stringcare_version"
+    implementation project(path: ':PhysicaloidLibrary')
+    implementation 'com.jakewharton.timber:timber:4.5.1'
+    implementation 'com.thebluealliance:spectrum:0.7.1'
+
+    implementation "androidx.room:room-runtime:$rootProject.roomVersion"
+    implementation "androidx.room:room-ktx:$rootProject.roomVersion"
+
+    kapt "androidx.room:room-compiler:$rootProject.roomVersion"
+    implementation files('libs/midwareService-dex2jar.jar'){
+        configurations {
+            compile.exclude module: 'gson'
+
+        }
+    }
+
+    implementation 'com.github.PhilJay:MpAndroidChart:v3.1.0'
+
+}
+
+repositories {
+    jcenter()
+    maven { url 'https://jitpack.io' }
+}
+

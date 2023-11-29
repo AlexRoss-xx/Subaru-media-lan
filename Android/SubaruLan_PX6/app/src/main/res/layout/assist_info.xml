@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="utf-8"?>
+    <!--
+  ~  2023.
+  ~ Alexey Rasskazov
+  -->
+
+<layout xmlns:tools="http://schemas.android.com/tools"
+xmlns:android="http://schemas.android.com/apk/res/android"
+xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <import type="android.view.View" />
+        <import type="com.hzbhd.alexross.subarulan2.models.TRIPMODE" />
+
+        <variable
+            name="canModel"
+            type="com.hzbhd.alexross.subarulan2.models.CANModel" />
+
+        <variable
+            name="stateModel"
+            type="com.hzbhd.alexross.subarulan2.models.StateModel" />
+
+        <variable
+            name="config"
+            type="com.hzbhd.alexross.subarulan2.ApplicationConfig" />
+
+    </data>
+
+<RelativeLayout
+    android:layout_width="1024dp"
+    android:layout_height="match_parent">
+
+
+    <include
+        android:id="@+id/tripinfo_layout"
+        layout="@layout/tripinfo_layout_info"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:visibility="@{stateModel.infoWindowType == 0?  View.VISIBLE : View.INVISIBLE, default= visible}"
+        />
+
+    <include
+        android:id="@+id/toast_info_mode__layout"
+        layout="@layout/toast_info_mode"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/tripinfo_layout"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="0dp"
+        android:layout_marginBottom="0dp"
+        android:visibility="@{stateModel.infoWindowType == 0?  View.VISIBLE : View.INVISIBLE, default= visible}"
+
+        />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="117dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="167dp"
+        android:visibility="@{stateModel.infoWindowType == 1?  View.VISIBLE : View.INVISIBLE, default= visible}"
+        >
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/imageView21"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:scaleType="fitXY"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@mipmap/assist" />
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:gravity="right"
+            android:orientation="vertical"
+            app:layout_constraintEnd_toEndOf="@+id/imageView21"
+            app:layout_constraintStart_toStartOf="@+id/imageView21">
+
+
+            <TextView
+                android:id="@+id/textView_clock"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:fontFamily="@font/rubik_light"
+                android:gravity="bottom"
+                android:text="@{``+canModel.currentTime, default=`10:10`}"
+                android:textColor="@{canModel.assistColor}"
+                android:textSize="36sp" />
+
+            <TextView
+                android:id="@+id/textView_airTemp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:fontFamily="@font/rubik_light"
+                android:gravity="bottom"
+                android:text="@{``+canModel.temperature, default=10.8}"
+                android:textColor="@{canModel.assistColor}"
+                android:textSize="36sp" />
+
+            <TextView
+                android:id="@+id/textViewTemp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:fontFamily="@font/rubik_light"
+                android:gravity="bottom"
+                android:text="@{``+canModel.engine_temperature, default=90}"
+                android:textColor="@{canModel.assistColor}"
+                android:textSize="36sp" />
+
+
+            <TextView
+                android:id="@+id/textView_fc"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:fontFamily="@font/rubik_light"
+                android:gravity="bottom"
+                android:text="@{@string/avgConsFuel((canModel.tripMode==TRIPMODE.A?canModel.avgFuelConsumptionA:canModel.avgFuelConsumptionB)), default=17.8}"
+
+                android:textColor="@{canModel.assistColor}"
+                android:textSize="36sp" />
+
+            <TextView
+                android:id="@+id/textViewRange"
+
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:fontFamily="@font/rubik_light"
+                android:gravity="bottom"
+                android:text="@{``+ (canModel.range)+``, default=`400`}"
+                android:textColor="@{canModel.assistColor}"
+                android:textSize="36sp" />
+
+        </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</RelativeLayout>
+</layout>

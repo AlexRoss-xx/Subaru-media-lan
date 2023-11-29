@@ -1,0 +1,37 @@
+
+
+/*
+ *  2023.
+ * Alexey Rasskazov
+ */
+
+apply plugin: 'com.android.library'
+
+buildscript {
+
+
+
+}
+dependencies {
+    implementation fileTree(dir: 'libs', include: '*.jar')
+    implementation files('../app/libs/d2xx.jar')
+}
+
+android {
+    compileSdkVersion 28
+
+    defaultConfig {
+        targetSdkVersion 27
+        minSdkVersion 19
+    }
+    buildTypes {
+
+    }
+
+    sourceSets {
+        main {
+            manifest.srcFile 'AndroidManifest.xml'
+            java.srcDirs = ['src']
+        }
+    }
+}

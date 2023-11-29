@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~  2023.
+  ~ Alexey Rasskazov
+  -->
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/cds_layout">
+
+    <data>
+        <import type="androidx.databinding.ObservableList"/>
+        <import type="android.view.View" />
+        <variable
+            name="cdChangerModel"
+            type="com.hzbhd.alexross.subarulan2.models.CDChangerModel" />
+    </data>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/transparent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/imageViewCD1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:visibility="@{!cdChangerModel.cdChangerTable[0] ? View.VISIBLE : View.INVISIBLE}"
+            app:srcCompat="@mipmap/cd1" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/imageViewCD1A"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:visibility="@{cdChangerModel.cdChangerTable[0] ? View.VISIBLE : View.INVISIBLE}"
+            app:srcCompat="@mipmap/cd1a" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/imageViewCD2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="@{!cdChangerModel.cdChangerTable[1] ? View.VISIBLE : View.INVISIBLE}"
+            app:srcCompat="@mipmap/cd2" />
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/imageViewCD2A"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:scaleType="matrix"
+            android:visibility="@{cdChangerModel.cdChangerTable[1] ? View.VISIBLE : View.INVISIBLE}"
+            app:srcCompat="@mipmap/cd2a" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/imageViewCD3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="@{!cdChangerModel.cdChangerTable[2] ? View.VISIBLE : View.INVISIBLE}"
+            app:srcCompat="@mipmap/cd3" />
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/imageViewCD3A"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="@{cdChangerModel.cdChangerTable[2] ? View.VISIBLE : View.INVISIBLE}"
+            app:srcCompat="@mipmap/cd3a" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/imageViewCD4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="@{!cdChangerModel.cdChangerTable[3] ? View.VISIBLE : View.INVISIBLE}"
+            app:srcCompat="@mipmap/cd4" />
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/imageViewCD4A"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="@{cdChangerModel.cdChangerTable[3] ? View.VISIBLE : View.INVISIBLE}"
+            app:srcCompat="@mipmap/cd4a" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/imageViewCD5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="@{!cdChangerModel.cdChangerTable[4] ? View.VISIBLE : View.INVISIBLE}"
+            app:srcCompat="@mipmap/cd5" />
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/imageViewCD5A"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="@{cdChangerModel.cdChangerTable[4] ? View.VISIBLE : View.INVISIBLE}"
+            app:srcCompat="@mipmap/cd5a" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/imageViewCD6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="@{!cdChangerModel.cdChangerTable[5] ? View.VISIBLE : View.INVISIBLE}"
+            app:srcCompat="@mipmap/cd6" />
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/imageViewCD6A"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="@{cdChangerModel.cdChangerTable[5] ? View.VISIBLE : View.INVISIBLE}"
+            app:srcCompat="@mipmap/cd6a" />
+    </RelativeLayout>
+</layout>

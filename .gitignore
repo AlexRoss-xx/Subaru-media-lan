@@ -1,2 +1,14 @@
 
 .DS_Store
+
+Android/SubaruLan_PX6/PhysicaloidLibrary/build/
+
+Android/SubaruLan_PX6/PhysicaloidLibrary/bin/
+
+Android/SubaruLan_PX6/PhysicaloidLibrary/.settings/
+
+Arduino/Tribeca3/.vs/
+
+Arduino/Tribeca3/__vm/
+
+Android/SubaruLan_PX6/.idea/

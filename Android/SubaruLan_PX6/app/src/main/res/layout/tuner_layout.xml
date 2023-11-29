@@ -1,0 +1,364 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~  2023.
+  ~ Alexey Rasskazov
+  -->
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/tuner_layout">
+
+    <data>
+        <import type="android.view.View" />
+        <import type="com.hzbhd.alexross.subarulan2.models.TUNERMODE" />
+        <variable
+            name="tunerModel"
+            type="com.hzbhd.alexross.subarulan2.models.TunerModel" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="visible">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/imageView"
+                style="@style/backgroundImage"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:contentDescription="@string/tuner_background"
+                android:scaleType="fitXY"
+                android:visibility="invisible"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/textViewScan"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="68dp"
+                android:text="SCAN"
+                android:textColor="@color/white_overlay"
+                android:textSize="18sp"
+                android:visibility="@{tunerModel.isScan ?  View.VISIBLE : View.INVISIBLE}"
+                app:layout_constraintBottom_toBottomOf="@+id/CurrentFRQ"
+                app:layout_constraintStart_toEndOf="@+id/CurrentFRQ" />
+
+            <TextView
+                android:id="@+id/textViewMode"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="40dp"
+                android:layout_marginBottom="20dp"
+                android:fontFamily="@font/rubik_light"
+                android:text="@{(tunerModel.tunerMode== TUNERMODE.AM )?`AM`:(tunerModel.tunerMode== TUNERMODE.FM1)?`FM1`:(tunerModel.tunerMode== TUNERMODE.FM2)?`FM2`:`FM3`  , default=FM1}"
+                android:textColor="@color/white_overlay"
+                android:textSize="36sp"
+                app:layout_constraintBottom_toBottomOf="@+id/CurrentFRQ"
+                app:layout_constraintEnd_toStartOf="@+id/CurrentFRQ" />
+
+            <TextView
+                android:id="@+id/textViewT"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="20dp"
+                android:text="MHz"
+                android:textColor="@color/white_overlay"
+                android:textSize="24sp"
+                app:layout_constraintBottom_toBottomOf="@+id/CurrentFRQ"
+                app:layout_constraintStart_toEndOf="@+id/CurrentFRQ" />
+
+            <TextView
+                android:id="@+id/CurrentFRQ"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="200dp"
+                android:fontFamily="@font/rubik_light"
+                android:foregroundGravity="center_vertical|center_horizontal|center"
+                android:gravity="center_vertical|center"
+                android:text="@{tunerModel.currentFRQ , default=107.9}"
+                android:textColor="@android:color/white"
+                android:textSize="100sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:layout_width="wrap_content" />
+
+
+            <TextView
+                android:id="@+id/stereo"
+                android:layout_width="112dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="60dp"
+                android:layout_marginTop="120dp"
+                android:fontFamily="@font/rubik_light"
+                android:foregroundGravity="center_horizontal"
+                android:gravity="center"
+                android:text="Stereo"
+                android:textColor="@color/mainColor"
+                android:textSize="18sp"
+                android:visibility="@{tunerModel.isStereo ?  View.VISIBLE : View.INVISIBLE}"
+                app:layout_constraintStart_toStartOf="@+id/CurrentFRQ"
+                app:layout_constraintTop_toTopOf="@+id/CurrentFRQ" />
+
+            <TextView
+                android:id="@+id/textViewRDS"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginBottom="68dp"
+                android:fontFamily="@font/rubik_light"
+                android:text="@{tunerModel.rdsMessage , default=`rds message`}"
+                android:textColor="@color/white_overlay"
+                android:textSize="30sp"
+                app:layout_constraintBottom_toTopOf="@+id/CurrentFRQ"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <RelativeLayout
+                android:layout_width="836dp"
+                android:layout_height="251dp"
+                android:layout_marginStart="84dp"
+                android:layout_marginTop="390dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                android:visibility="@integer/tabvisibility">
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/imageView2"
+                    android:layout_width="769dp"
+                    android:layout_height="105dp"
+                    android:layout_marginTop="40dp"
+                    android:adjustViewBounds="false"
+                    android:cropToPadding="false"
+                    app:srcCompat="@mipmap/menu" />
+
+                <TableLayout
+                    android:layout_width="720dp"
+                    android:layout_height="105dp"
+                    android:layout_alignTop="@+id/imageView2"
+                    android:layout_marginStart="25dp"
+                    android:layout_marginTop="-5dp"
+                    android:gravity="center_vertical"
+                    android:stretchColumns="*">
+
+                    <TableRow
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="fill_horizontal">
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:id="@+id/imageView10"
+                            android:layout_width="0dp"
+                            android:layout_height="105dp"
+                            android:visibility="@{safeUnbox(tunerModel.stationNumber)==1?  View.VISIBLE : View.INVISIBLE, default=gone }"
+                            app:srcCompat="@mipmap/menu_selected" />
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:id="@+id/imageView9"
+                            android:layout_width="0dp"
+                            android:layout_height="105dp"
+                            android:visibility="@{safeUnbox(tunerModel.stationNumber)==2?  View.VISIBLE : View.INVISIBLE, default=gone}"
+                            app:srcCompat="@mipmap/menu_selected" />
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:id="@+id/imageView8"
+                            android:layout_width="0dp"
+                            android:layout_height="105dp"
+                            android:visibility="@{safeUnbox(tunerModel.stationNumber)==3?  View.VISIBLE : View.INVISIBLE, default=gone}"
+                            app:srcCompat="@mipmap/menu_selected" />
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:id="@+id/imageView7"
+                            android:layout_width="0dp"
+                            android:layout_height="105dp"
+                            android:visibility="@{safeUnbox(tunerModel.stationNumber)==4?  View.VISIBLE : View.INVISIBLE, default=gone}"
+                            app:srcCompat="@mipmap/menu_selected" />
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:id="@+id/imageView6"
+                            android:layout_width="0dp"
+                            android:layout_height="105dp"
+                            android:visibility="@{safeUnbox(tunerModel.stationNumber)==5?  View.VISIBLE : View.INVISIBLE, default=gone}"
+                            app:srcCompat="@mipmap/menu_selected" />
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:id="@+id/imageView5"
+                            android:layout_width="0dp"
+                            android:layout_height="105dp"
+                            android:visibility="@{safeUnbox(tunerModel.stationNumber)==6?  View.VISIBLE : View.INVISIBLE}"
+                            app:srcCompat="@mipmap/menu_selected" />
+                    </TableRow>
+
+                </TableLayout>
+
+                <TableLayout
+                    android:id="@+id/tableLayout2"
+                    android:layout_width="720dp"
+                    android:layout_height="80dp"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginStart="30dp"
+                    android:layout_marginTop="40dp"
+                    android:gravity="center_vertical"
+                    android:stretchColumns="*">
+
+                    <TableRow
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="fill_horizontal">
+
+                        <TextView
+                            style="@{tunerModel.stationNumber}"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/rubik_light"
+                            android:gravity="right|center_vertical"
+                            android:text="1"
+                            android:textAlignment="viewStart" />
+
+                        <TextView
+                            style="@{tunerModel.stationNumber}"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/rubik_light"
+                            android:gravity="right|center_vertical"
+                            android:text="2"
+                            android:textAlignment="viewStart" />
+
+                        <TextView
+                            style="@{tunerModel.stationNumber}"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/rubik_light"
+                            android:gravity="right|center_vertical"
+                            android:text="3"
+                            android:textAlignment="viewStart" />
+
+                        <TextView
+                            style="@{tunerModel.stationNumber}"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/rubik_light"
+                            android:gravity="right|center_vertical"
+                            android:text="4"
+                            android:textAlignment="viewStart" />
+
+                        <TextView
+                            style="@{tunerModel.stationNumber}"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/rubik_light"
+                            android:gravity="right|center_vertical"
+                            android:text="5"
+                            android:textAlignment="viewStart" />
+
+                        <TextView
+                            style="@{tunerModel.stationNumber}"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/rubik_light"
+                            android:gravity="right|center_vertical"
+                            android:text="6"
+                            android:textAlignment="viewStart" />
+                    </TableRow>
+
+                </TableLayout>
+
+                <TableLayout
+                    android:id="@+id/tableLayoutStations"
+                    android:layout_width="720dp"
+                    android:layout_height="73dp"
+                    android:layout_alignParentStart="false"
+                    android:layout_alignParentTop="false"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="59dp"
+                    android:gravity="center_vertical"
+                    android:stretchColumns="*"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <TableRow
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="fill_horizontal">
+
+                        <TextView
+                            android:id="@+id/textView6"
+                            style="@style/stations"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/rubik_light"
+                            android:gravity="right|center_vertical"
+                            android:text="@{tunerModel.currentStations[0]  , default=107.9}"
+                            android:textAlignment="textEnd" />
+
+                        <TextView
+                            android:id="@+id/textView5"
+                            style="@style/stations"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/rubik_light"
+                            android:gravity="right|center_vertical"
+                            android:text="@{tunerModel.currentStations[1]  , default=107.9}"
+                            android:textAlignment="textEnd" />
+
+                        <TextView
+                            android:id="@+id/textView4"
+                            style="@style/stations"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/rubik_light"
+                            android:gravity="right|center_vertical"
+                            android:text="@{tunerModel.currentStations[2]  , default=107.9}"
+                            android:textAlignment="textEnd" />
+
+                        <TextView
+                            android:id="@+id/textView3"
+                            style="@style/stations"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/rubik_light"
+                            android:gravity="right|center_vertical"
+                            android:text="@{tunerModel.currentStations[3]  , default=107.9}"
+                            android:textAlignment="textEnd" />
+
+                        <TextView
+                            android:id="@+id/textView2"
+                            style="@style/stations"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/rubik_light"
+                            android:gravity="right|center_vertical"
+                            android:text="@{tunerModel.currentStations[4]  , default=107.9}"
+                            android:textAlignment="textEnd" />
+
+                        <TextView
+                            android:id="@+id/textView"
+                            style="@style/stations"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/rubik_light"
+                            android:gravity="right|center_vertical"
+                            android:text="@{tunerModel.currentStations[5]  , default=107.9}"
+                            android:textAlignment="textEnd" />
+                    </TableRow>
+
+                </TableLayout>
+
+            </RelativeLayout>
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </LinearLayout>
+</layout>
